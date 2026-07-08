@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Ailmoor City is a cross-platform interactive narrative and life-simulation project created, written, and designed by Ruxin Liang.">
+<title>Ailmoor City - Interactive Narrative by Ruxin Liang</title>
+<style>
+  :root {
+    --ink: #151719;
+    --night: #202126;
+    --paper: #fbf7ed;
+    --cream: #fffdf5;
+    --frost: #e8f1ef;
+    --gold: #d5a24d;
+    --copper: #a8643b;
+    --teal: #2e6e76;
+    --moss: #65755a;
+    --plum: #5d334c;
+    --muted: rgba(21, 23, 25, 0.68);
+    --line: rgba(45, 36, 24, 0.16);
+    --dark-line: rgba(255, 255, 255, 0.18);
+    --shadow: 0 22px 60px rgba(41, 31, 20, 0.16);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.62;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  h1,
+  h2,
+  h3,
+  p,
+  figure,
+  blockquote {
+    margin-top: 0;
+  }
+
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 14px 28px;
+    background: rgba(251, 247, 237, 0.9);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(12px);
+  }
+
+  .brand {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--plum);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 12px;
+    font-size: 12px;
+    color: rgba(21, 23, 25, 0.72);
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .nav-links a:hover {
+    border-color: currentColor;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 86vh;
+    display: grid;
+    align-items: end;
+    overflow: hidden;
+    background:
+      linear-gradient(90deg, rgba(12, 15, 19, 0.82) 0%, rgba(12, 15, 19, 0.48) 46%, rgba(12, 15, 19, 0.16) 100%),
+      linear-gradient(180deg, rgba(12, 15, 19, 0.08) 0%, rgba(12, 15, 19, 0.54) 100%),
+      url("AilmoorCity_project_assets/prototype_main_menu.jpg") center / cover no-repeat;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 92px;
+    background: linear-gradient(180deg, rgba(251, 247, 237, 0), var(--paper));
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    width: min(1120px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 96px 0 116px;
+    color: #fff;
+  }
+
+  .eyebrow {
+    margin: 0 0 14px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    max-width: 760px;
+    margin-bottom: 16px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 74px;
+    line-height: 0.95;
+    font-weight: 400;
+  }
+
+  .hero-copy {
+    max-width: 720px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 23px;
+    line-height: 1.45;
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 30px 0 0;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 7px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.13);
+    font-size: 12px;
+    color: #fff;
+  }
+
+  .section {
+    width: min(1120px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 86px 0;
+  }
+
+  .section.compact {
+    padding-top: 38px;
+  }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: minmax(190px, 0.34fr) minmax(0, 0.66fr);
+    gap: 42px;
+    align-items: start;
+    margin-bottom: 34px;
+  }
+
+  .label {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--teal);
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin-bottom: 18px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 42px;
+    line-height: 1.12;
+    font-weight: 400;
+    color: var(--plum);
+  }
+
+  h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    line-height: 1.25;
+    color: var(--plum);
+  }
+
+  .lead {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    line-height: 1.52;
+    color: #322821;
+  }
+
+  .copy p {
+    margin-bottom: 17px;
+    color: var(--muted);
+  }
+
+  .info-band {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--line);
+    box-shadow: var(--shadow);
+  }
+
+  .info-item {
+    min-height: 170px;
+    padding: 24px;
+    background: var(--cream);
+  }
+
+  .info-item strong {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: var(--copper);
+    text-transform: uppercase;
+  }
+
+  .info-item span {
+    display: block;
+    color: #2f2d29;
+  }
+
+  .text-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(330px, 0.74fr);
+    gap: 44px;
+    align-items: center;
+  }
+
+  .feature-image {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: var(--shadow);
+  }
+
+  .feature-image img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .feature-image.tall img {
+    aspect-ratio: 4 / 5;
+  }
+
+  .caption {
+    margin: 11px 0 0;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .fact {
+    min-height: 130px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgba(255, 253, 245, 0.8);
+  }
+
+  .fact strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--teal);
+  }
+
+  .fact span {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .systems-band {
+    background: var(--frost);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .systems-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.72fr) minmax(360px, 0.86fr);
+    gap: 42px;
+    align-items: center;
+  }
+
+  .stat-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 0;
+    margin: 24px 0 0;
+    list-style: none;
+  }
+
+  .stat-list li {
+    padding: 11px 12px;
+    border: 1px solid rgba(46, 110, 118, 0.18);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.72);
+    font-size: 13px;
+    color: #334143;
+  }
+
+  .process {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .stage {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--cream);
+  }
+
+  .stage img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .stage-body {
+    padding: 22px;
+  }
+
+  .stage-num {
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--copper);
+    text-transform: uppercase;
+  }
+
+  .stage p {
+    margin-bottom: 0;
+    color: var(--muted);
+  }
+
+  .quote-band {
+    color: #fff;
+    background:
+      linear-gradient(90deg, rgba(32, 33, 38, 0.92), rgba(46, 69, 72, 0.76)),
+      url("AilmoorCity_project_assets/prototype_city_map.jpg") center / cover no-repeat;
+  }
+
+  .quote {
+    max-width: 860px;
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 32px;
+    line-height: 1.35;
+  }
+
+  .quote cite {
+    display: block;
+    margin-top: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+  }
+
+  .gallery figure {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 12px 34px rgba(41, 31, 20, 0.1);
+  }
+
+  .gallery figure:nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .gallery figure:nth-child(2),
+  .gallery figure:nth-child(3),
+  .gallery figure:nth-child(4),
+  .gallery figure:nth-child(5) {
+    grid-column: span 2;
+  }
+
+  .gallery figure:nth-child(6),
+  .gallery figure:nth-child(7),
+  .gallery figure:nth-child(8) {
+    grid-column: span 2;
+  }
+
+  .gallery img {
+    height: 100%;
+    min-height: 220px;
+    object-fit: cover;
+  }
+
+  .gallery figure:nth-child(1) img {
+    aspect-ratio: 4 / 5;
+  }
+
+  .gallery figcaption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 44px 16px 14px;
+    color: #fff;
+    font-size: 12px;
+    background: linear-gradient(180deg, rgba(17, 18, 20, 0), rgba(17, 18, 20, 0.78));
+  }
+
+  .interface-band {
+    background: #f8f1df;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .interface-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.94fr) minmax(310px, 0.64fr);
+    gap: 44px;
+    align-items: start;
+  }
+
+  .screen-stack {
+    display: grid;
+    gap: 14px;
+  }
+
+  .screen-stack figure {
+    overflow: hidden;
+    margin: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--cream);
+    box-shadow: 0 14px 36px rgba(41, 31, 20, 0.12);
+  }
+
+  .screen-stack img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .ui-list {
+    display: grid;
+    gap: 14px;
+    padding: 0;
+    margin: 24px 0 0;
+    list-style: none;
+  }
+
+  .ui-list li {
+    padding: 15px 16px;
+    border-left: 4px solid var(--gold);
+    background: rgba(255, 253, 245, 0.78);
+    color: var(--muted);
+  }
+
+  .timeline-band {
+    color: #fff;
+    background: var(--night);
+  }
+
+  .timeline-band .label,
+  .timeline-band h2,
+  .timeline-band h3 {
+    color: #fff;
+  }
+
+  .timeline-band .lead {
+    color: rgba(255, 255, 255, 0.74);
+  }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .milestone {
+    min-height: 280px;
+    padding: 24px;
+    border: 1px solid var(--dark-line);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .milestone time {
+    display: block;
+    margin-bottom: 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .milestone p {
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.68);
+  }
+
+  .release-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.78fr) minmax(320px, 0.72fr);
+    gap: 44px;
+    align-items: center;
+  }
+
+  .release-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding: 0;
+    margin: 22px 0 0;
+    list-style: none;
+  }
+
+  .release-list li {
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--cream);
+  }
+
+  .release-list strong {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--teal);
+  }
+
+  .release-list span {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 26px;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 16px;
+    border: 1px solid var(--teal);
+    border-radius: 8px;
+    background: var(--teal);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .button.secondary {
+    background: transparent;
+    color: var(--teal);
+  }
+
+  footer {
+    border-top: 1px solid var(--line);
+    background: var(--cream);
+  }
+
+  .footer-inner {
+    width: min(1120px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 28px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .footer-links a {
+    color: var(--teal);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .footer-links a:hover {
+    border-color: currentColor;
+  }
+
+  @media (max-width: 980px) {
+    .site-nav {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 10px;
+      padding: 14px 20px;
+    }
+
+    h1 {
+      font-size: 58px;
+    }
+
+    .section-head,
+    .text-grid,
+    .systems-grid,
+    .interface-grid,
+    .release-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .info-band {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .fact-grid,
+    .timeline {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .process {
+      grid-template-columns: 1fr;
+    }
+
+    .gallery {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery figure,
+    .gallery figure:nth-child(1),
+    .gallery figure:nth-child(2),
+    .gallery figure:nth-child(3),
+    .gallery figure:nth-child(4),
+    .gallery figure:nth-child(5),
+    .gallery figure:nth-child(6),
+    .gallery figure:nth-child(7),
+    .gallery figure:nth-child(8) {
+      grid-column: span 1;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .nav-links {
+      gap: 9px;
+      font-size: 11px;
+    }
+
+    .hero {
+      min-height: 82vh;
+      background-position: center top;
+    }
+
+    .hero-inner {
+      width: min(100% - 32px, 1120px);
+      padding: 78px 0 88px;
+    }
+
+    h1 {
+      font-size: 43px;
+    }
+
+    h2 {
+      font-size: 31px;
+    }
+
+    .hero-copy,
+    .lead,
+    .quote {
+      font-size: 19px;
+    }
+
+    .section {
+      width: min(100% - 32px, 1120px);
+      padding: 62px 0;
+    }
+
+    .info-band,
+    .fact-grid,
+    .stat-list,
+    .timeline,
+    .release-list,
+    .gallery {
+      grid-template-columns: 1fr;
+    }
+
+    .info-item {
+      min-height: auto;
+    }
+  }
+</style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Project sections">
+    <a class="brand" href="#top">Ruxin Liang / Ailmoor City</a>
+    <div class="nav-links">
+      <a href="#world">World</a>
+      <a href="#systems">Systems</a>
+      <a href="#arc">Six-Year Arc</a>
+      <a href="#visuals">Visuals</a>
+      <a href="#interface">Interface</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <p class="eyebrow">Cross-platform interactive narrative</p>
+      <h1>Ailmoor City</h1>
+      <p class="hero-copy">A character-driven life simulation set in a magical post-war city, where six years of study, work, friendship, and small moral choices decide both Solaris's future and the fate of five coexisting species.</p>
+      <div class="hero-meta" aria-label="Project summary">
+        <span class="pill">Created, written, and designed by Ruxin Liang</span>
+        <span class="pill">Original 78-page GDD completed in March 2021</span>
+        <span class="pill">Active design and 2D production</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section compact" aria-label="Project overview">
+      <div class="info-band">
+        <div class="info-item">
+          <strong>Form</strong>
+          <span>Single-player narrative life simulation with branching character stories, companion-creature cultivation, and turn-based encounter systems.</span>
+        </div>
+        <div class="info-item">
+          <strong>Setting</strong>
+          <span>Ailmoor, a multi-species magical city where medieval civic architecture sits beside magic-driven technology.</span>
+        </div>
+        <div class="info-item">
+          <strong>Scope</strong>
+          <span>Six in-game years, seventeen documented attributes, eight companion characters, and more than thirty endings.</span>
+        </div>
+        <div class="info-item">
+          <strong>Status</strong>
+          <span>Design document complete; current visual identity established; production-grade UI and 2D assets in progress.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="world">
+      <div class="section-head">
+        <p class="label">World</p>
+        <div>
+          <h2>A civic fantasy built around coexistence, access, and consequence.</h2>
+          <p class="lead">Ailmoor is set in Nawlore, a parallel-world nation formed after a long war between humans and invading Fiends ended in forced peace. The player does not decide whether peace exists; they decide what peace becomes through daily life.</p>
+        </div>
+      </div>
+
+      <div class="text-grid">
+        <div class="copy">
+          <p>Solaris arrives from the small town of Ylabelle with three companion creatures and almost no money. The city receives her as both student and outsider: she can study, work, rest, hunt, make friends, enter competitions, and eventually cross into hidden districts that only open when her indices, relationships, and prior choices align.</p>
+          <p>The world is deliberately uneven. Snow-white stone streets, old imperial buildings, botanical ornament, civic academies, abandoned wartime structures, and "ghost areas" of purple mist all sit in one navigation space. The result is not pure escapism, but a city that keeps visible records of a war it survived.</p>
+          <p>The project frames self-determination as civic consequence. Solaris's ordinary schedule shapes her body, taste, moral direction, social access, magical capacity, and the way each species imagines the city's future.</p>
+        </div>
+        <figure>
+          <div class="feature-image">
+            <img src="AilmoorCity_project_assets/prototype_city_map.jpg" alt="Ailmoor City snowy civic map with location-selection interface" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="caption">The city map organizes Ailmoor as a navigable civic body, with districts, gates, and seasonal rhythm visible in the same screen.</figcaption>
+        </figure>
+      </div>
+
+      <div class="fact-grid" aria-label="Five species">
+        <div class="fact">
+          <strong>Humans</strong>
+          <span>Long-resident citizens with no native magic, strong in humanities and science.</span>
+        </div>
+        <div class="fact">
+          <strong>Fiends</strong>
+          <span>Magic users from Droussarith, long-lived and politically charged after the old invasion.</span>
+        </div>
+        <div class="fact">
+          <strong>Ecthrois</strong>
+          <span>Mixed-heritage descendants of Humans and Fiends; Solaris's own species.</span>
+        </div>
+        <div class="fact">
+          <strong>Espiritus</strong>
+          <span>Shape-shifting beings whose native forms are animal, social, and spiritually linked.</span>
+        </div>
+        <div class="fact">
+          <strong>Monstruos</strong>
+          <span>Rumored, unstable, and difficult to identify; their origin and lifespan remain uncertain.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="systems-band" id="systems">
+      <div class="section">
+        <div class="section-head">
+          <p class="label">Systems</p>
+          <div>
+            <h2>The player's main action is the cultivation of a life.</h2>
+            <p class="lead">Ailmoor turns ordinary scheduling into authorship. Classes, work, rest, hunting, festivals, friendships, and pet care all feed into a seventeen-dimension character space.</p>
+          </div>
+        </div>
+
+        <div class="systems-grid">
+          <div class="copy">
+            <p>The player plans Solaris's life in half-month rounds. Every choice changes visible and hidden values that determine who trusts her, which places admit her, which jobs she can perform, and which endings remain possible. The interface makes self-development legible without reducing the story to a single optimal route.</p>
+            <p>The companion-creature system runs in parallel. Solaris's three creatures need food, mood management, and combat consideration across the full six-year arc. Later, additional creatures can be rescued or adopted, and the Dark Avenue path can mutate companions through latent magical bloodlines.</p>
+            <ul class="stat-list">
+              <li>Physical Strength</li>
+              <li>Wisdom</li>
+              <li>Charm</li>
+              <li>Enthusiasm</li>
+              <li>Soul</li>
+              <li>Self-esteem</li>
+              <li>Morality</li>
+              <li>Temperament</li>
+              <li>Thinking</li>
+              <li>Thoughtfulness</li>
+              <li>Fighting</li>
+              <li>Magic</li>
+              <li>Fortune</li>
+              <li>Popularity</li>
+              <li>Rebellion</li>
+              <li>Demonization</li>
+              <li>Spirit</li>
+            </ul>
+          </div>
+
+          <figure>
+            <div class="feature-image">
+              <img src="AilmoorCity_project_assets/prototype_status_attributes.jpg" alt="Ailmoor City status screen showing character attributes and progression bars" loading="lazy" decoding="async">
+            </div>
+            <figcaption class="caption">The status interface turns story drift into readable, changing attributes across clothing, money, environment, energy, and inner traits.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="arc">
+      <div class="section-head">
+        <p class="label">Narrative Arc</p>
+        <div>
+          <h2>Six in-game years unfold through social access, skill growth, and district gates.</h2>
+          <p class="lead">The structure is long-form rather than single-branch. A player may complete a run and still miss whole friendship arcs, hidden objects, Dark Avenue conditions, and future-trend outcomes.</p>
+        </div>
+      </div>
+
+      <div class="process">
+        <article class="stage">
+          <img src="AilmoorCity_project_assets/prototype_dialogue_classroom.jpg" alt="Ailmoor classroom dialogue scene with Solaris portrait" loading="lazy" decoding="async">
+          <div class="stage-body">
+            <div class="stage-num">Year 1 / Beginning Spring</div>
+            <h3>Arrival and basic routine</h3>
+            <p>Solaris enters Ailmoor, meets early companions, learns basic scheduling, and watches festivals before she can fully compete.</p>
+          </div>
+        </article>
+
+        <article class="stage">
+          <img src="AilmoorCity_project_assets/ailmoor_06_shop_interface.jpg" alt="Ailmoor shop interface with character and item display" loading="lazy" decoding="async">
+          <div class="stage-body">
+            <div class="stage-num">Years 2-3 / Acquaintance</div>
+            <h3>Work, friendships, and city entry</h3>
+            <p>More companion stories unlock, professional courses become available, hunting missions open, and Dark Avenue first becomes reachable.</p>
+          </div>
+        </article>
+
+        <article class="stage">
+          <img src="AilmoorCity_project_assets/ailmoor_07_room_interface.jpg" alt="Ailmoor room interface with Solaris silhouette and side operation menu" loading="lazy" decoding="async">
+          <div class="stage-body">
+            <div class="stage-num">Years 4-6 / Discovery and closure</div>
+            <h3>Full system consequence</h3>
+            <p>Magic creation, rare creatures, player-run businesses, full Dark Regions access, and the ending architecture converge.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="quote-band" aria-label="Project theme">
+      <div class="section">
+        <blockquote class="quote">
+          Ailmoor's central question is not whether different beings can share a city. It is what daily choices, habits, friendships, and ambitions require from each person before coexistence becomes real.
+          <cite>Theme adapted from the Ailmoor City authored project treatment</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="section" id="visuals">
+      <div class="section-head">
+        <p class="label">Visual Direction</p>
+        <div>
+          <h2>Celestial ornament, civic maps, diary warmth, and production-grade UI.</h2>
+          <p class="lead">The current visual pass gives Ailmoor a finished identity: gold-on-cream title plates, ornate buttons, snow-lit city maps, painterly interiors, isometric civic spaces, and interface panels that feel like objects from the world itself.</p>
+        </div>
+      </div>
+
+      <div class="gallery" aria-label="Ailmoor prototype image gallery">
+        <figure>
+          <img src="AilmoorCity_project_assets/prototype_cover_large.jpg" alt="Ailmoor City cover plate from the 2021 game design document" loading="lazy" decoding="async">
+          <figcaption>Original cover plate: celestial-botanical arcana and the lotus motif.</figcaption>
+        </figure>
+        <figure>
+          <img src="AilmoorCity_project_assets/prototype_main_menu.jpg" alt="Ailmoor main menu with celestial ornament and four buttons" loading="lazy" decoding="async">
+          <figcaption>Main menu: title treatment and menu hierarchy.</figcaption>
+        </figure>
+        <figure>
+          <img src="AilmoorCity_project_assets/prototype_city_map.jpg" alt="Ailmoor snowy city map with district selection labels" loading="lazy" decoding="async">
+          <figcaption>City map: civic navigation and seasonal UI.</figcaption>
+        </figure>
+        <figure>
+          <img src="AilmoorCity_project_assets/prototype_dialogue_classroom.jpg" alt="Ailmoor dialogue interface inside a classroom" loading="lazy" decoding="async">
+          <figcaption>Dialogue frame: portrait, text box, and isometric classroom.</figcaption>
+        </figure>
+        <figure>
+          <img src="AilmoorCity_project_assets/prototype_status_attributes.jpg" alt="Ailmoor status and attributes interface" loading="lazy" decoding="async">
+          <figcaption>Status screen: attribute bars and character condition.</figcaption>
+        </figure>
+        <figure>
+          <img src="AilmoorCity_project_assets/ailmoor_06_shop_interface.jpg" alt="Ailmoor shop interface with items and character portrait" loading="lazy" decoding="async">
+          <figcaption>Shop interface: commerce as a social and progression space.</figcaption>
+        </figure>
+        <figure>
+          <img src="AilmoorCity_project_assets/prototype_save_load.jpg" alt="Ailmoor save and load screen with ornate panel" loading="lazy" decoding="async">
+          <figcaption>Save/load screen: diegetic panel styling and slot rhythm.</figcaption>
+        </figure>
+        <figure>
+          <img src="AilmoorCity_project_assets/prototype_loading_screen.jpg" alt="Ailmoor loading screen with heart progress bar and botanical border" loading="lazy" decoding="async">
+          <figcaption>Loading screen: quiet decorative pacing between states.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="interface-band" id="interface">
+      <div class="section">
+        <div class="section-head">
+          <p class="label">Interface</p>
+          <div>
+            <h2>The prototype treats UI as part of the world, not as a layer pasted on top.</h2>
+            <p class="lead">The A11 interface material establishes repeatable screen grammar: a calendar panel, gameplay field, operation menu, status bars, pet status, shortcut rail, and modal panels that share the same ornament system.</p>
+          </div>
+        </div>
+
+        <div class="interface-grid">
+          <div class="screen-stack">
+            <figure>
+              <img src="AilmoorCity_project_assets/prototype_ui_layout.jpg" alt="Ailmoor UI layout annotation showing calendar, gameplay, status, pet, operation, and shortcut areas" loading="lazy" decoding="async">
+            </figure>
+            <figure>
+              <img src="AilmoorCity_project_assets/ailmoor_08_loading_ui.jpg" alt="Ailmoor interface treatment showing loading and UI consistency" loading="lazy" decoding="async">
+            </figure>
+          </div>
+
+          <div class="copy">
+            <p>The prototype uses stable screen regions so the player can repeatedly scan the same places for time, goals, companion state, money, guide access, and schedule commands. This matters for a life simulation because the player returns to these screens hundreds of times.</p>
+            <p>Buttons carry the same scalloped frame language as the main menu and save/load overlays. The visual system is decorative, but the hierarchy stays practical: primary commands sit in fixed clusters, status panels use consistent slots, and long-term progression remains readable at a glance.</p>
+            <ul class="ui-list">
+              <li>Calendar and half-month scheduling remain visible as the core loop anchor.</li>
+              <li>Pet status is treated as a persistent system rather than side flavor.</li>
+              <li>Save/load and loading states use the same gold, brown, and botanical language as the title screen.</li>
+              <li>Map, room, shop, dialogue, and status screens share a single visual vocabulary.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="timeline-band" id="timeline">
+      <div class="section">
+        <div class="section-head">
+          <p class="label">Development</p>
+          <div>
+            <h2>Continuous authored development from 2021 through the current 2D production phase.</h2>
+            <p class="lead">The project has moved beyond exploratory concepting. The world, system architecture, narrative branching, and current visual identity are established; the active work is production-grade 2D assets and engine-side preparation.</p>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <article class="milestone">
+            <time>March 2021</time>
+            <h3>Origination</h3>
+            <p>78-page Game Design Document completed and deposited under copyright, establishing the city, species, six-year arc, attributes, cast, and endings.</p>
+          </article>
+
+          <article class="milestone">
+            <time>2021-2022</time>
+            <h3>Visual Development Pass 1</h3>
+            <p>First character-design and world-building moodboards, species silhouettes, district concepts, interiors, and street references.</p>
+          </article>
+
+          <article class="milestone">
+            <time>2023-2024</time>
+            <h3>Systems Refinement</h3>
+            <p>Branching dialogue, ending-condition tuning, companion-creature prototypes, friendship logic, and Dark Avenue gating were refined.</p>
+          </article>
+
+          <article class="milestone">
+            <time>2024-2025</time>
+            <h3>Current Visual Style</h3>
+            <p>Cover frame, classroom dialogue, civic map, status UI, main menu, shop interface, room interface, and loading UI established the production look.</p>
+          </article>
+
+          <article class="milestone">
+            <time>2025-2026</time>
+            <h3>Design / 2D Production</h3>
+            <p>Production-grade UI screens, in-game 2D character and environment art, dialogue-system visuals, and front-end flow assembly are in progress.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Release path">
+      <div class="release-grid">
+        <div>
+          <p class="label">Release Path</p>
+          <h2>Designed for a playable vertical slice, then festival, showcase, and platform release.</h2>
+          <p class="lead">The next production milestone is an engine-side vertical slice covering Year 1 content, two companion NPCs, the live cultivation system, companion-creature mechanics, and the first wilderness battle map.</p>
+          <div class="actions">
+            <a class="button" href="mailto:ruxinliang@gmail.com">Contact Ruxin</a>
+            <a class="button secondary" href="https://www.behance.net/ruxin-liang" target="_blank" rel="noopener">View Behance</a>
+          </div>
+        </div>
+
+        <div>
+          <ul class="release-list">
+            <li>
+              <strong>Vertical Slice</strong>
+              <span>Year 1 playable end-to-end with first companion arcs and core scheduling live.</span>
+            </li>
+            <li>
+              <strong>Mid-Build</strong>
+              <span>Years 2-4, Dark Avenue gating, Magic Creation, and remaining companion systems.</span>
+            </li>
+            <li>
+              <strong>Final Build</strong>
+              <span>Years 5-6, 30+ endings, future-trend outcomes, localization, and QA.</span>
+            </li>
+            <li>
+              <strong>Public Circuit</strong>
+              <span>Steam and Epic release path, console ports, indie-game festivals, and museum-linked programs.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="footer-inner">
+      <div>Ailmoor City - original project by Ruxin Liang. &copy; 2021-2026 Ruxin Liang.</div>
+      <div class="footer-links">
+        <a href="mailto:ruxinliang@gmail.com">ruxinliang@gmail.com</a>
+        <a href="https://www.behance.net/ruxin-liang" target="_blank" rel="noopener">Behance</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
