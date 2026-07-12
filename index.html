@@ -108,7 +108,7 @@
     background:
       linear-gradient(90deg, rgba(12, 15, 19, 0.82) 0%, rgba(12, 15, 19, 0.48) 46%, rgba(12, 15, 19, 0.16) 100%),
       linear-gradient(180deg, rgba(12, 15, 19, 0.08) 0%, rgba(12, 15, 19, 0.54) 100%),
-      url("AilmoorCity_project_assets/prototype_main_menu.jpg") center / cover no-repeat;
+      url("AilmoorCity_project_assets/images/ailmoor_05_main_menu.png") center / cover no-repeat;
   }
 
   .hero::after {
@@ -383,8 +383,8 @@
   .quote-band {
     color: #fff;
     background:
-      linear-gradient(90deg, rgba(32, 33, 38, 0.92), rgba(46, 69, 72, 0.76)),
-      url("AilmoorCity_project_assets/prototype_city_map.jpg") center / cover no-repeat;
+      radial-gradient(circle at 18% 22%, rgba(194, 145, 55, 0.34), transparent 32%),
+      linear-gradient(135deg, #152723, #283a34 58%, #171d1b);
   }
 
   .quote {
@@ -457,6 +457,114 @@
     color: #fff;
     font-size: 12px;
     background: linear-gradient(180deg, rgba(17, 18, 20, 0), rgba(17, 18, 20, 0.78));
+  }
+
+  .visual-showcase {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .visual-showcase figure,
+  .visual-showcase figure:nth-child(n) {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-column: span 1;
+    grid-row: auto;
+    background: #fffdf7;
+  }
+
+  .visual-showcase img,
+  .visual-showcase figure:nth-child(1) img {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .visual-showcase figcaption {
+    position: static;
+    padding: 24px 26px 28px;
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+    background: transparent;
+  }
+
+  .visual-showcase h3 {
+    margin: 0 0 10px;
+    font-size: 24px;
+  }
+
+  .visual-showcase p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .gallery figure.portrait-card {
+    grid-column: span 4;
+    min-height: 520px;
+    border-color: rgba(210, 168, 88, 0.42);
+    background: #2b2019;
+  }
+
+  .gallery figure.portrait-card img {
+    height: 470px;
+    object-fit: contain;
+    object-position: center bottom;
+    background:
+      radial-gradient(circle at 50% 32%, #594233 0%, #372820 52%, #211813 100%);
+  }
+
+  .character-band {
+    color: var(--ink);
+    background: transparent;
+    border: 0;
+  }
+
+  .character-band .label {
+    color: var(--teal);
+  }
+
+  .character-band .lead {
+    color: var(--muted);
+  }
+
+  .character-band .portrait-card figcaption {
+    color: #fff8e8;
+  }
+
+  .story-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .story-gallery figure,
+  .story-gallery figure:first-child,
+  .story-gallery figure:nth-child(n) {
+    grid-column: span 1;
+    grid-row: auto;
+  }
+
+  .story-gallery img,
+  .story-gallery figure:first-child img {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transform: scale(1.025);
+  }
+
+  .character-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .character-gallery figure.portrait-card,
+  .character-gallery figure:nth-child(n) {
+    grid-column: span 1;
+    grid-row: auto;
   }
 
   .interface-band {
@@ -682,6 +790,18 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
+    .visual-showcase {
+      grid-template-columns: 1fr;
+    }
+
+    .story-gallery {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .character-gallery {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
     .gallery figure,
     .gallery figure:nth-child(1),
     .gallery figure:nth-child(2),
@@ -730,12 +850,18 @@
       padding: 62px 0;
     }
 
+
     .info-band,
     .fact-grid,
     .stat-list,
     .timeline,
     .release-list,
     .gallery {
+      grid-template-columns: 1fr;
+    }
+
+    .story-gallery,
+    .character-gallery {
       grid-template-columns: 1fr;
     }
 
@@ -753,6 +879,8 @@
       <a href="#systems">Systems</a>
       <a href="#arc">Six-Year Arc</a>
       <a href="#visuals">Visuals</a>
+      <a href="#story-world">Story Life</a>
+      <a href="#character-system">Character</a>
       <a href="#interface">Interface</a>
       <a href="#timeline">Timeline</a>
       <a href="#contact">Contact</a>
@@ -766,7 +894,7 @@
       <p class="hero-copy">A character-driven life simulation set in a magical post-war city, where six years of study, work, friendship, and small moral choices decide both Solaris's future and the fate of five coexisting species.</p>
       <div class="hero-meta" aria-label="Project summary">
         <span class="pill">Created, written, and designed by Ruxin Liang</span>
-        <span class="pill">Original 78-page GDD completed in March 2021</span>
+        <span class="pill">Original 78-page prototype document completed in March 2021</span>
         <span class="pill">Active design and 2D production</span>
       </div>
     </div>
@@ -811,7 +939,7 @@
         </div>
         <figure>
           <div class="feature-image">
-            <img src="AilmoorCity_project_assets/prototype_city_map.jpg" alt="Ailmoor City snowy civic map with location-selection interface" loading="lazy" decoding="async">
+            <img src="AilmoorCity_project_assets/images/ailmoor_03_city_map.png" alt="Ailmoor City snowy civic map with location-selection interface" loading="lazy" decoding="async">
           </div>
           <figcaption class="caption">The city map organizes Ailmoor as a navigable civic body, with districts, gates, and seasonal rhythm visible in the same screen.</figcaption>
         </figure>
@@ -878,7 +1006,7 @@
 
           <figure>
             <div class="feature-image">
-              <img src="AilmoorCity_project_assets/prototype_status_attributes.jpg" alt="Ailmoor City status screen showing character attributes and progression bars" loading="lazy" decoding="async">
+              <img src="AilmoorCity_project_assets/images/ailmoor_04_status_attributes.png" alt="Ailmoor City status screen showing character attributes and progression bars" loading="lazy" decoding="async">
             </div>
             <figcaption class="caption">The status interface turns story drift into readable, changing attributes across clothing, money, environment, energy, and inner traits.</figcaption>
           </figure>
@@ -897,7 +1025,7 @@
 
       <div class="process">
         <article class="stage">
-          <img src="AilmoorCity_project_assets/prototype_dialogue_classroom.jpg" alt="Ailmoor classroom dialogue scene with Solaris portrait" loading="lazy" decoding="async">
+          <img src="AilmoorCity_project_assets/images/ailmoor_02_dialogue_classroom.png" alt="Ailmoor classroom dialogue scene with Solaris portrait" loading="lazy" decoding="async">
           <div class="stage-body">
             <div class="stage-num">Year 1 / Beginning Spring</div>
             <h3>Arrival and basic routine</h3>
@@ -906,7 +1034,7 @@
         </article>
 
         <article class="stage">
-          <img src="AilmoorCity_project_assets/ailmoor_06_shop_interface.jpg" alt="Ailmoor shop interface with character and item display" loading="lazy" decoding="async">
+          <img src="AilmoorCity_project_assets/images/ailmoor_09_menu_ui.png" alt="Ailmoor shop interface with character and item display" loading="lazy" decoding="async">
           <div class="stage-body">
             <div class="stage-num">Years 2-3 / Acquaintance</div>
             <h3>Work, friendships, and city entry</h3>
@@ -915,7 +1043,7 @@
         </article>
 
         <article class="stage">
-          <img src="AilmoorCity_project_assets/ailmoor_07_room_interface.jpg" alt="Ailmoor room interface with Solaris silhouette and side operation menu" loading="lazy" decoding="async">
+          <img src="AilmoorCity_project_assets/images/ailmoor_07_room_interface.png" alt="Ailmoor room interface with Solaris silhouette and side operation menu" loading="lazy" decoding="async">
           <div class="stage-body">
             <div class="stage-num">Years 4-6 / Discovery and closure</div>
             <h3>Full system consequence</h3>
@@ -940,41 +1068,100 @@
         <div>
           <h2>Celestial ornament, civic maps, diary warmth, and production-grade UI.</h2>
           <p class="lead">The current visual pass gives Ailmoor a finished identity: gold-on-cream title plates, ornate buttons, snow-lit city maps, painterly interiors, isometric civic spaces, and interface panels that feel like objects from the world itself.</p>
+          <p class="lead" style="font-size: 15px; color: var(--muted);">Visual development for this pre-production phase combines hand-drawn design, AI-assisted concept exploration under the author's art direction, and interface design; a number of the concept images shown on this page are AI-assisted. Final in-game assets are being produced in the current 2D production phase.</p>
         </div>
       </div>
 
-      <div class="gallery" aria-label="Ailmoor prototype image gallery">
+      <div class="gallery visual-showcase" aria-label="Ailmoor visual direction showcase">
         <figure>
-          <img src="AilmoorCity_project_assets/prototype_cover_large.jpg" alt="Ailmoor City cover plate from the 2021 game design document" loading="lazy" decoding="async">
-          <figcaption>Original cover plate: celestial-botanical arcana and the lotus motif.</figcaption>
+          <img src="AilmoorCity_project_assets/images/ailmoor_cover.png" alt="Ailmoor City cover plate from the 2021 game design document" loading="lazy" decoding="async">
+          <figcaption><h3>Celestial-botanical identity</h3><p>The cover establishes the project's central visual language before play begins. A symmetrical celestial frame, botanical ornament, restrained gold, and the lotus emblem position Ailmoor between an illustrated civic archive and a personal magical diary. The result feels ceremonial without losing the warmth of a character-led story.</p></figcaption>
         </figure>
         <figure>
-          <img src="AilmoorCity_project_assets/prototype_main_menu.jpg" alt="Ailmoor main menu with celestial ornament and four buttons" loading="lazy" decoding="async">
-          <figcaption>Main menu: title treatment and menu hierarchy.</figcaption>
+          <img src="AilmoorCity_project_assets/images/ailmoor_06_saving_loading.png" alt="Ailmoor save and load screen with ornate panel" loading="lazy" decoding="async">
+          <figcaption><h3>Diegetic interface objects</h3><p>Save and load functions are framed as objects that belong to the setting rather than neutral software panels. Repeated scalloped edges, ribbon details, warm parchment surfaces, and dark inset fields create a recognizable hierarchy while making administrative actions feel consistent with the rest of the world.</p></figcaption>
         </figure>
         <figure>
-          <img src="AilmoorCity_project_assets/prototype_city_map.jpg" alt="Ailmoor snowy city map with district selection labels" loading="lazy" decoding="async">
-          <figcaption>City map: civic navigation and seasonal UI.</figcaption>
+          <img src="AilmoorCity_project_assets/images/ailmoor_08_story_cutscene.png" alt="Ailmoor loading screen with heart progress bar and botanical border" loading="lazy" decoding="async">
+          <figcaption><h3>Transitions with narrative tone</h3><p>Loading and story-transition screens use quieter compositions to slow the rhythm between dense management states. Botanical borders, soft illustration, and restrained progress indicators preserve continuity while giving the player a moment of emotional breathing room between locations and events.</p></figcaption>
         </figure>
         <figure>
-          <img src="AilmoorCity_project_assets/prototype_dialogue_classroom.jpg" alt="Ailmoor dialogue interface inside a classroom" loading="lazy" decoding="async">
-          <figcaption>Dialogue frame: portrait, text box, and isometric classroom.</figcaption>
+          <img src="AilmoorCity_project_assets/images/ailmoor_02_key_visual_simplified_hd_1920x1080.png" alt="Ailmoor City key visual with Solaris and the city" loading="lazy" decoding="async">
+          <figcaption><h3>Character within the civic world</h3><p>The key visual places Solaris against Ailmoor rather than separating hero and setting. Her silhouette, the architecture, and the atmospheric palette communicate that personal cultivation and civic consequence are inseparable: every intimate decision eventually changes how the character can move through the city.</p></figcaption>
         </figure>
         <figure>
-          <img src="AilmoorCity_project_assets/prototype_status_attributes.jpg" alt="Ailmoor status and attributes interface" loading="lazy" decoding="async">
-          <figcaption>Status screen: attribute bars and character condition.</figcaption>
+          <img src="AilmoorCity_project_assets/images/ailmoor_magic_classroom_isometric.png" alt="Isometric magical classroom environment" loading="lazy" decoding="async">
+          <figcaption><h3>Readable isometric interiors</h3><p>The classroom demonstrates how study, conversation, and skill progression can share one readable environment. Furniture clusters provide navigation landmarks; windows and warm timber create depth; and the isometric view leaves enough stable space for dialogue and system overlays without flattening the room into a menu.</p></figcaption>
         </figure>
         <figure>
-          <img src="AilmoorCity_project_assets/ailmoor_06_shop_interface.jpg" alt="Ailmoor shop interface with items and character portrait" loading="lazy" decoding="async">
-          <figcaption>Shop interface: commerce as a social and progression space.</figcaption>
+          <img src="AilmoorCity_project_assets/images/ailmoor_festival_town_square.png" alt="Ailmoor festival in the town square" loading="lazy" decoding="async">
+          <figcaption><h3>Seasonal civic spectacle</h3><p>The festival square expands the same visual vocabulary into a public setting. Ornament becomes architecture, calendar progression becomes visible celebration, and crowds transform the city into a social system. Festivals therefore serve as both visual rewards and checkpoints for relationships, reputation, and access.</p></figcaption>
         </figure>
-        <figure>
-          <img src="AilmoorCity_project_assets/prototype_save_load.jpg" alt="Ailmoor save and load screen with ornate panel" loading="lazy" decoding="async">
-          <figcaption>Save/load screen: diegetic panel styling and slot rhythm.</figcaption>
+      </div>
+    </section>
+
+    <section class="systems-band" id="story-world">
+      <div class="section">
+        <div class="section-head">
+          <p class="label">Story Life</p>
+          <div>
+            <h2>Growth is recorded through small scenes, not only through statistics.</h2>
+            <p class="lead">The prototype pairs long-term cultivation with intimate storybook moments. Seasonal outings, friendships, creatures, and quiet discoveries give emotional meaning to the values accumulated through the schedule.</p>
+          </div>
+        </div>
+        <div class="gallery story-gallery" aria-label="Ailmoor narrative scene gallery">
+          <figure>
+            <img src="AilmoorCity_project_assets/images/ailmoor_beach_picnic_vintage_storybook.png" alt="Solaris and companions sharing a beach picnic" loading="lazy" decoding="async">
+            <figcaption>Beach picnic: companion relationships turn unlocked locations into remembered experiences.</figcaption>
+          </figure>
+          <figure>
+            <img src="AilmoorCity_project_assets/images/ailmoor_10_meadow_rabbit_scene.png" alt="Solaris meeting a rabbit in a meadow" loading="lazy" decoding="async">
+            <figcaption>Meadow encounter: exploration connects creature care, fortune, and discovery.</figcaption>
+          </figure>
+          <figure>
+            <img src="AilmoorCity_project_assets/images/ailmoor_11_flower_meadow_scene.png" alt="Solaris in a flower meadow" loading="lazy" decoding="async">
+            <figcaption>Flower meadow: seasonal atmosphere makes time progression visible.</figcaption>
+          </figure>
+          <figure>
+            <img src="AilmoorCity_project_assets/images/ailmoor_12_paper_airplane_beach_scene.png" alt="Paper airplane scene on the beach" loading="lazy" decoding="async">
+            <figcaption>Paper-airplane scene: small choices and friendships carry across the six-year arc.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section character-band" id="character-system">
+      <div class="section-head">
+        <p class="label">Character System</p>
+        <div>
+          <h2>Clothing makes Solaris's changing identity visible.</h2>
+          <p class="lead">Wardrobe choices sit alongside attributes, money, study, work, and relationships. Variants preserve a recognizable silhouette while expressing profession, status, taste, and the route the player is building.</p>
+        </div>
+      </div>
+      <div class="gallery character-gallery" aria-label="Solaris character clothing variants">
+        <figure class="portrait-card">
+          <img src="AilmoorCity_project_assets/images/ailmoor_character_cutout_clothes_variant.png" alt="Solaris in a teal academy outfit" loading="lazy" decoding="async">
+          <figcaption>Academy attire: a practical civic-fantasy baseline.</figcaption>
         </figure>
-        <figure>
-          <img src="AilmoorCity_project_assets/prototype_loading_screen.jpg" alt="Ailmoor loading screen with heart progress bar and botanical border" loading="lazy" decoding="async">
-          <figcaption>Loading screen: quiet decorative pacing between states.</figcaption>
+        <figure class="portrait-card">
+          <img src="AilmoorCity_project_assets/images/ailmoor_character_cutout_maid_dress.png" alt="Solaris in a maid work uniform" loading="lazy" decoding="async">
+          <figcaption>Work uniform: clothing reflects jobs and daily routine.</figcaption>
+        </figure>
+        <figure class="portrait-card">
+          <img src="AilmoorCity_project_assets/images/ailmoor_character_pastoral_floral_dress.png" alt="Solaris in a pastoral floral dress" loading="lazy" decoding="async">
+          <figcaption>Pastoral dress: seasonal life and social occasions.</figcaption>
+        </figure>
+        <figure class="portrait-card">
+          <img src="AilmoorCity_project_assets/images/ailmoor_character_burgundy_dress.png" alt="Solaris in a burgundy formal dress" loading="lazy" decoding="async">
+          <figcaption>Burgundy dress: formal presentation and social access.</figcaption>
+        </figure>
+        <figure class="portrait-card">
+          <img src="AilmoorCity_project_assets/images/ailmoor_character_blue_vine_princess_dress.png" alt="Solaris in a blue vine princess dress" loading="lazy" decoding="async">
+          <figcaption>Blue-vine dress: ceremonial status and magical ornament.</figcaption>
+        </figure>
+        <figure class="portrait-card">
+          <img src="AilmoorCity_project_assets/images/ailmoor_character_pink_princess_dress.png" alt="Solaris in a pink princess dress" loading="lazy" decoding="async">
+          <figcaption>Pink formalwear: a distinct late-game identity route.</figcaption>
         </figure>
       </div>
     </section>
@@ -992,10 +1179,7 @@
         <div class="interface-grid">
           <div class="screen-stack">
             <figure>
-              <img src="AilmoorCity_project_assets/prototype_ui_layout.jpg" alt="Ailmoor UI layout annotation showing calendar, gameplay, status, pet, operation, and shortcut areas" loading="lazy" decoding="async">
-            </figure>
-            <figure>
-              <img src="AilmoorCity_project_assets/ailmoor_08_loading_ui.jpg" alt="Ailmoor interface treatment showing loading and UI consistency" loading="lazy" decoding="async">
+              <img src="AilmoorCity_project_assets/images/ailmoor_wardrobe_character_customization.png" alt="Ailmoor UI layout annotation showing calendar, gameplay, status, pet, operation, and shortcut areas" loading="lazy" decoding="async">
             </figure>
           </div>
 
@@ -1027,17 +1211,17 @@
           <article class="milestone">
             <time>March 2021</time>
             <h3>Origination</h3>
-            <p>78-page Game Design Document completed and deposited under copyright, establishing the city, species, six-year arc, attributes, cast, and endings.</p>
+            <p>78-page prototype document completed and deposited under copyright, establishing the city, species, six-year arc, attributes, cast, and endings.</p>
           </article>
 
           <article class="milestone">
-            <time>2021-2022</time>
+            <time>April-December 2021</time>
             <h3>Visual Development Pass 1</h3>
             <p>First character-design and world-building moodboards, species silhouettes, district concepts, interiors, and street references.</p>
           </article>
 
           <article class="milestone">
-            <time>2023-2024</time>
+            <time>2022-2023</time>
             <h3>Systems Refinement</h3>
             <p>Branching dialogue, ending-condition tuning, companion-creature prototypes, friendship logic, and Dark Avenue gating were refined.</p>
           </article>
@@ -1049,7 +1233,7 @@
           </article>
 
           <article class="milestone">
-            <time>2025-2026</time>
+            <time>2026-2027</time>
             <h3>Design / 2D Production</h3>
             <p>Production-grade UI screens, in-game 2D character and environment art, dialogue-system visuals, and front-end flow assembly are in progress.</p>
           </article>
@@ -1095,7 +1279,7 @@
 
   <footer id="contact">
     <div class="footer-inner">
-      <div>Ailmoor City - original project by Ruxin Liang. &copy; 2021-2026 Ruxin Liang.</div>
+      <div>Ailmoor City - original project by Ruxin Liang. &copy; 2021-2026 Ruxin Liang. World, story, systems, and interface design are the author's original work; some concept imagery on this page is AI-assisted, created under the author's art direction.</div>
       <div class="footer-links">
         <a href="mailto:ruxinliang@gmail.com">ruxinliang@gmail.com</a>
         <a href="https://www.behance.net/ruxin-liang" target="_blank" rel="noopener">Behance</a>
