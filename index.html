@@ -383,8 +383,8 @@
   .quote-band {
     color: #fff;
     background:
-      radial-gradient(circle at 18% 22%, rgba(194, 145, 55, 0.34), transparent 32%),
-      linear-gradient(135deg, #152723, #283a34 58%, #171d1b);
+      radial-gradient(circle at 18% 22%, rgba(213, 162, 77, 0.32), transparent 42%),
+      linear-gradient(135deg, #2c1e14 0%, #3b2a1b 55%, #1b120c 100%);
   }
 
   .quote {
@@ -616,7 +616,9 @@
 
   .timeline-band {
     color: #fff;
-    background: var(--night);
+    background:
+      radial-gradient(circle at 82% 12%, rgba(168, 100, 59, 0.22), transparent 46%),
+      linear-gradient(160deg, #241811 0%, #1a110b 100%);
   }
 
   .timeline-band .label,
@@ -751,6 +753,144 @@
 
   .footer-links a:hover {
     border-color: currentColor;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: #1a1206;
+  }
+
+  a:focus-visible,
+  .button:focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  h1,
+  h2 {
+    letter-spacing: -0.012em;
+  }
+
+  .hero-inner h1,
+  .hero-copy {
+    text-shadow: 0 1px 22px rgba(8, 10, 12, 0.38);
+  }
+
+  .feature-image img,
+  .stage img,
+  .screen-stack img,
+  .visual-showcase img {
+    transition: transform 0.55s ease;
+  }
+
+  .feature-image:hover img,
+  .stage:hover img,
+  .screen-stack figure:hover img,
+  .visual-showcase figure:hover img {
+    transform: scale(1.035);
+  }
+
+  .fact,
+  .release-list li {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .fact:hover,
+  .release-list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(41, 31, 20, 0.12);
+  }
+
+  section[id],
+  header[id] {
+    scroll-margin-top: 86px;
+  }
+
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 30;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--copper));
+    box-shadow: 0 1px 6px rgba(168, 100, 59, 0.4);
+    transition: width 0.1s linear;
+  }
+
+  .site-nav {
+    transition: box-shadow 0.25s ease, background 0.25s ease;
+  }
+
+  .site-nav.scrolled {
+    box-shadow: 0 6px 20px rgba(41, 31, 20, 0.1);
+  }
+
+  .nav-links a {
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .nav-links a.active {
+    color: var(--teal);
+    border-color: currentColor;
+  }
+
+  .pill {
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .pill:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .button {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(46, 110, 118, 0.28);
+  }
+
+  .button.secondary:hover {
+    background: var(--teal);
+    color: #fff;
+  }
+
+  .info-item {
+    transition: background 0.25s ease;
+  }
+
+  .info-item:hover {
+    background: #fff;
+  }
+
+  .gallery figure:not(.portrait-card) img,
+  .portrait-card img {
+    transition: transform 0.55s ease;
+  }
+
+  .portrait-card:hover img {
+    transform: scale(1.04);
+  }
+
+  .story-gallery figure:hover img {
+    transform: scale(1.06);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html.js .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    html.js .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
   }
 
   @media (max-width: 980px) {
@@ -891,7 +1031,7 @@
     <div class="hero-inner">
       <p class="eyebrow">Cross-platform interactive narrative</p>
       <h1>Ailmoor City</h1>
-      <p class="hero-copy">A character-driven life simulation set in a magical post-war city, where six years of study, work, friendship, and small moral choices decide both Solaris's future and the fate of five coexisting species.</p>
+      <p class="hero-copy">A single-player life simulation set in Ailmoor, a magical city rebuilt after a war between humans and Fiends. The player guides Solaris through six in-game years, scheduling her classes, jobs, and rest in half-month turns, and those daily decisions settle who she becomes and how five species end up sharing the city.</p>
       <div class="hero-meta" aria-label="Project summary">
         <span class="pill">Created, written, and designed by Ruxin Liang</span>
         <span class="pill">Original 78-page prototype document completed in March 2021</span>
@@ -926,16 +1066,16 @@
       <div class="section-head">
         <p class="label">World</p>
         <div>
-          <h2>A civic fantasy built around coexistence, access, and consequence.</h2>
-          <p class="lead">Ailmoor is set in Nawlore, a parallel-world nation formed after a long war between humans and invading Fiends ended in forced peace. The player does not decide whether peace exists; they decide what peace becomes through daily life.</p>
+          <h2>A magical city rebuilt after war, where five species now share the same streets.</h2>
+          <p class="lead">Ailmoor sits in Nawlore, a parallel-world nation where a long war between humans and invading Fiends ended in an enforced, uneasy peace. That peace is already settled when Solaris arrives. What the player shapes is how she lives inside it.</p>
         </div>
       </div>
 
       <div class="text-grid">
         <div class="copy">
-          <p>Solaris arrives from the small town of Ylabelle with three companion creatures and almost no money. The city receives her as both student and outsider: she can study, work, rest, hunt, make friends, enter competitions, and eventually cross into hidden districts that only open when her indices, relationships, and prior choices align.</p>
-          <p>The world is deliberately uneven. Snow-white stone streets, old imperial buildings, botanical ornament, civic academies, abandoned wartime structures, and "ghost areas" of purple mist all sit in one navigation space. The result is not pure escapism, but a city that keeps visible records of a war it survived.</p>
-          <p>The project frames self-determination as civic consequence. Solaris's ordinary schedule shapes her body, taste, moral direction, social access, magical capacity, and the way each species imagines the city's future.</p>
+          <p>Solaris arrives from the small town of Ylabelle with three companion creatures and almost no money, treated by the city as a student and an outsider at once. She can attend classes, take jobs, rest, hunt, and enter competitions. A few districts stay locked until her attributes, relationships, and past choices line up to open them.</p>
+          <p>The map is uneven on purpose. Snow-white stone streets, old imperial buildings, civic academies, abandoned wartime ruins, and fog-covered "ghost areas" all share one navigation space, so the war the city survived stays visible in the streets Solaris walks every day.</p>
+          <p>Her ordinary schedule adds up. It shapes her health and looks, her morality, which people and places accept her, how much magic she can handle, and, by the final year, the future each species pictures for Ailmoor.</p>
         </div>
         <figure>
           <div class="feature-image">
@@ -974,15 +1114,15 @@
         <div class="section-head">
           <p class="label">Systems</p>
           <div>
-            <h2>The player's main action is the cultivation of a life.</h2>
-            <p class="lead">Ailmoor turns ordinary scheduling into authorship. Classes, work, rest, hunting, festivals, friendships, and pet care all feed into a seventeen-dimension character space.</p>
+            <h2>Most of the game is planning one character's ordinary life.</h2>
+            <p class="lead">Classes, work, rest, hunting, festivals, friendships, and creature care all feed seventeen tracked attributes, so routine scheduling is where Solaris actually takes shape.</p>
           </div>
         </div>
 
         <div class="systems-grid">
           <div class="copy">
-            <p>The player plans Solaris's life in half-month rounds. Every choice changes visible and hidden values that determine who trusts her, which places admit her, which jobs she can perform, and which endings remain possible. The interface makes self-development legible without reducing the story to a single optimal route.</p>
-            <p>The companion-creature system runs in parallel. Solaris's three creatures need food, mood management, and combat consideration across the full six-year arc. Later, additional creatures can be rescued or adopted, and the Dark Avenue path can mutate companions through latent magical bloodlines.</p>
+            <p>The player plans her life in half-month rounds. Each choice moves both shown and hidden values, and those values decide who trusts her, which places let her in, which jobs she qualifies for, and which of the thirty-plus endings are still reachable. No single schedule is the right one; several very different runs all hold together.</p>
+            <p>A companion-creature system runs alongside this. Solaris's three starting creatures need feeding, mood care, and battle preparation across all six years. More can be rescued or adopted later, and the Dark Avenue path can mutate them through dormant magical bloodlines.</p>
             <ul class="stat-list">
               <li>Physical Strength</li>
               <li>Wisdom</li>
@@ -1018,8 +1158,8 @@
       <div class="section-head">
         <p class="label">Narrative Arc</p>
         <div>
-          <h2>Six in-game years unfold through social access, skill growth, and district gates.</h2>
-          <p class="lead">The structure is long-form rather than single-branch. A player may complete a run and still miss whole friendship arcs, hidden objects, Dark Avenue conditions, and future-trend outcomes.</p>
+          <h2>Six in-game years open up as Solaris gains skills, friends, and the standing to pass new district gates.</h2>
+          <p class="lead">One playthrough cannot reach everything. A finished run can still miss whole friendship arcs, hidden items, the Dark Avenue conditions, and several of the future-trend endings.</p>
         </div>
       </div>
 
@@ -1029,7 +1169,7 @@
           <div class="stage-body">
             <div class="stage-num">Year 1 / Beginning Spring</div>
             <h3>Arrival and basic routine</h3>
-            <p>Solaris enters Ailmoor, meets early companions, learns basic scheduling, and watches festivals before she can fully compete.</p>
+            <p>Solaris reaches Ailmoor, meets her first companions, learns how scheduling works, and watches the early festivals before she is ready to compete in them.</p>
           </div>
         </article>
 
@@ -1038,7 +1178,7 @@
           <div class="stage-body">
             <div class="stage-num">Years 2-3 / Acquaintance</div>
             <h3>Work, friendships, and city entry</h3>
-            <p>More companion stories unlock, professional courses become available, hunting missions open, and Dark Avenue first becomes reachable.</p>
+            <p>More companion stories unlock, professional courses open, hunting missions become available, and Dark Avenue can be reached for the first time.</p>
           </div>
         </article>
 
@@ -1047,7 +1187,7 @@
           <div class="stage-body">
             <div class="stage-num">Years 4-6 / Discovery and closure</div>
             <h3>Full system consequence</h3>
-            <p>Magic creation, rare creatures, player-run businesses, full Dark Regions access, and the ending architecture converge.</p>
+            <p>Magic creation, rare creatures, player-run businesses, full Dark Regions access, and the ending conditions all come together.</p>
           </div>
         </article>
       </div>
@@ -1056,8 +1196,8 @@
     <section class="quote-band" aria-label="Project theme">
       <div class="section">
         <blockquote class="quote">
-          Ailmoor's central question is not whether different beings can share a city. It is what daily choices, habits, friendships, and ambitions require from each person before coexistence becomes real.
-          <cite>Theme adapted from the Ailmoor City authored project treatment</cite>
+          Ailmoor takes for granted that five species can share a city. The question it keeps asking is what that sharing costs each of them, in habits, friendships, and the small choices of an ordinary week.
+          <cite>From the Ailmoor City project treatment, 2021</cite>
         </blockquote>
       </div>
     </section>
@@ -1066,36 +1206,36 @@
       <div class="section-head">
         <p class="label">Visual Direction</p>
         <div>
-          <h2>Celestial ornament, civic maps, diary warmth, and production-grade UI.</h2>
-          <p class="lead">The current visual pass gives Ailmoor a finished identity: gold-on-cream title plates, ornate buttons, snow-lit city maps, painterly interiors, isometric civic spaces, and interface panels that feel like objects from the world itself.</p>
-          <p class="lead" style="font-size: 15px; color: var(--muted);">Visual development for this pre-production phase combines hand-drawn design, AI-assisted concept exploration under the author's art direction, and interface design; a number of the concept images shown on this page are AI-assisted. Final in-game assets are being produced in the current 2D production phase.</p>
+          <h2>Gold-on-cream title plates, snow-lit maps, and menus that look like objects from the world.</h2>
+          <p class="lead">The current visual pass gives Ailmoor a settled look: ornate buttons, painterly interiors, isometric civic spaces, and panels built from one gold-and-botanical frame, so any screenshot clearly comes from the same city.</p>
+          <p class="lead" style="font-size: 15px; color: var(--muted);">Visual development in this pre-production phase combines hand-drawn design, interface design, and AI-assisted concept exploration under the author's art direction. Several concept images on this page are AI-assisted. Final in-game assets are being produced in the current 2D phase.</p>
         </div>
       </div>
 
       <div class="gallery visual-showcase" aria-label="Ailmoor visual direction showcase">
         <figure>
           <img src="AilmoorCity_project_assets/images/ailmoor_cover.png" alt="Ailmoor City cover plate from the 2021 game design document" loading="lazy" decoding="async">
-          <figcaption><h3>Celestial-botanical identity</h3><p>The cover establishes the project's central visual language before play begins. A symmetrical celestial frame, botanical ornament, restrained gold, and the lotus emblem position Ailmoor between an illustrated civic archive and a personal magical diary. The result feels ceremonial without losing the warmth of a character-led story.</p></figcaption>
+          <figcaption><h3>Celestial-botanical cover</h3><p>The cover sets the project's look before play begins. A symmetrical celestial frame, botanical ornament, restrained gold, and a lotus emblem place Ailmoor somewhere between an illustrated civic archive and a personal magical diary: ceremonial, but still warm enough for a character-led story.</p></figcaption>
         </figure>
         <figure>
           <img src="AilmoorCity_project_assets/images/ailmoor_06_saving_loading.png" alt="Ailmoor save and load screen with ornate panel" loading="lazy" decoding="async">
-          <figcaption><h3>Diegetic interface objects</h3><p>Save and load functions are framed as objects that belong to the setting rather than neutral software panels. Repeated scalloped edges, ribbon details, warm parchment surfaces, and dark inset fields create a recognizable hierarchy while making administrative actions feel consistent with the rest of the world.</p></figcaption>
+          <figcaption><h3>Menus that belong to the world</h3><p>Save and load look like objects from the setting. Scalloped edges, ribbon details, warm parchment, and dark inset fields keep a clear hierarchy and make even an admin screen feel part of Ailmoor.</p></figcaption>
         </figure>
         <figure>
           <img src="AilmoorCity_project_assets/images/ailmoor_08_story_cutscene.png" alt="Ailmoor loading screen with heart progress bar and botanical border" loading="lazy" decoding="async">
-          <figcaption><h3>Transitions with narrative tone</h3><p>Loading and story-transition screens use quieter compositions to slow the rhythm between dense management states. Botanical borders, soft illustration, and restrained progress indicators preserve continuity while giving the player a moment of emotional breathing room between locations and events.</p></figcaption>
+          <figcaption><h3>Quiet transition screens</h3><p>Loading and story-transition screens slow the pace between dense management states. Botanical borders, soft illustration, and a simple progress indicator hold continuity and give the player a short breather between locations and events.</p></figcaption>
         </figure>
         <figure>
           <img src="AilmoorCity_project_assets/images/ailmoor_02_key_visual_simplified_hd_1920x1080.png" alt="Ailmoor City key visual with Solaris and the city" loading="lazy" decoding="async">
-          <figcaption><h3>Character within the civic world</h3><p>The key visual places Solaris against Ailmoor rather than separating hero and setting. Her silhouette, the architecture, and the atmospheric palette communicate that personal cultivation and civic consequence are inseparable: every intimate decision eventually changes how the character can move through the city.</p></figcaption>
+          <figcaption><h3>Character inside the city</h3><p>The key visual sets Solaris close against Ailmoor's architecture, part of the same frame. Her silhouette, the buildings, and the palette all say the same thing: her private choices and the city's condition move together, and each one changes how she can travel through it.</p></figcaption>
         </figure>
         <figure>
           <img src="AilmoorCity_project_assets/images/ailmoor_magic_classroom_isometric.png" alt="Isometric magical classroom environment" loading="lazy" decoding="async">
-          <figcaption><h3>Readable isometric interiors</h3><p>The classroom demonstrates how study, conversation, and skill progression can share one readable environment. Furniture clusters provide navigation landmarks; windows and warm timber create depth; and the isometric view leaves enough stable space for dialogue and system overlays without flattening the room into a menu.</p></figcaption>
+          <figcaption><h3>Readable isometric interiors</h3><p>The classroom shows how study, conversation, and skill growth can share one clear space. Furniture gives navigation landmarks, windows and warm timber add depth, and the isometric angle leaves room for dialogue and system overlays without turning the room into a menu.</p></figcaption>
         </figure>
         <figure>
           <img src="AilmoorCity_project_assets/images/ailmoor_festival_town_square.png" alt="Ailmoor festival in the town square" loading="lazy" decoding="async">
-          <figcaption><h3>Seasonal civic spectacle</h3><p>The festival square expands the same visual vocabulary into a public setting. Ornament becomes architecture, calendar progression becomes visible celebration, and crowds transform the city into a social system. Festivals therefore serve as both visual rewards and checkpoints for relationships, reputation, and access.</p></figcaption>
+          <figcaption><h3>Festivals as public checkpoints</h3><p>The festival square scales the same look up to a crowd. Calendar progress turns into a visible celebration, and the festivals double as checkpoints for relationships, reputation, and access, so a public event is also a place where the player's earlier choices pay off.</p></figcaption>
         </figure>
       </div>
     </section>
@@ -1105,8 +1245,8 @@
         <div class="section-head">
           <p class="label">Story Life</p>
           <div>
-            <h2>Growth is recorded through small scenes, not only through statistics.</h2>
-            <p class="lead">The prototype pairs long-term cultivation with intimate storybook moments. Seasonal outings, friendships, creatures, and quiet discoveries give emotional meaning to the values accumulated through the schedule.</p>
+            <h2>Small scenes are where six years of numbers turn into memories.</h2>
+            <p class="lead">The prototype pairs long-term cultivation with storybook moments. Seasonal outings, friendships, creatures, and quiet discoveries give weight to the values Solaris builds up through the schedule.</p>
           </div>
         </div>
         <div class="gallery story-gallery" aria-label="Ailmoor narrative scene gallery">
@@ -1171,8 +1311,8 @@
         <div class="section-head">
           <p class="label">Interface</p>
           <div>
-            <h2>The prototype treats UI as part of the world, not as a layer pasted on top.</h2>
-            <p class="lead">The A11 interface material establishes repeatable screen grammar: a calendar panel, gameplay field, operation menu, status bars, pet status, shortcut rail, and modal panels that share the same ornament system.</p>
+            <h2>The interface is built from the same frames as the maps and interiors, so the UI belongs to the same city.</h2>
+            <p class="lead">The A11 interface material sets a repeatable screen layout: a calendar panel, gameplay field, operation menu, status bars, pet status, a shortcut rail, and modal panels that all reuse the same ornament.</p>
           </div>
         </div>
 
@@ -1184,11 +1324,11 @@
           </div>
 
           <div class="copy">
-            <p>The prototype uses stable screen regions so the player can repeatedly scan the same places for time, goals, companion state, money, guide access, and schedule commands. This matters for a life simulation because the player returns to these screens hundreds of times.</p>
-            <p>Buttons carry the same scalloped frame language as the main menu and save/load overlays. The visual system is decorative, but the hierarchy stays practical: primary commands sit in fixed clusters, status panels use consistent slots, and long-term progression remains readable at a glance.</p>
+            <p>The prototype keeps screen regions stable, so the player scans the same spots for time, goals, companion state, money, guide access, and schedule commands. That matters in a life simulation, because these screens come back hundreds of times over a full run.</p>
+            <p>Buttons carry the scalloped frame from the main menu and the save/load overlays. The style is decorative, but the hierarchy stays practical: primary commands sit in fixed clusters, status panels use the same slots each time, and long-term progress stays readable at a glance.</p>
             <ul class="ui-list">
               <li>Calendar and half-month scheduling remain visible as the core loop anchor.</li>
-              <li>Pet status is treated as a persistent system rather than side flavor.</li>
+              <li>Pet status runs as a persistent system, tracked across all six years.</li>
               <li>Save/load and loading states use the same gold, brown, and botanical language as the title screen.</li>
               <li>Map, room, shop, dialogue, and status screens share a single visual vocabulary.</li>
             </ul>
@@ -1210,8 +1350,8 @@
         <div class="timeline">
           <article class="milestone">
             <time>March 2021</time>
-            <h3>Origination</h3>
-            <p>78-page prototype document completed and deposited under copyright, establishing the city, species, six-year arc, attributes, cast, and endings.</p>
+            <h3>Concept and copyright</h3>
+            <p>78-page prototype document completed and deposited under copyright, setting out the city, species, six-year arc, attributes, cast, and endings.</p>
           </article>
 
           <article class="milestone">
@@ -1286,5 +1426,75 @@
       </div>
     </div>
   </footer>
+  <script>
+  (function () {
+    var docEl = document.documentElement;
+    docEl.classList.add('js');
+
+    var reduceMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Reading-progress bar
+    var bar = document.createElement('div');
+    bar.className = 'scroll-progress';
+    document.body.appendChild(bar);
+
+    var nav = document.querySelector('.site-nav');
+    var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+    var sections = navLinks
+      .map(function (a) {
+        var href = a.getAttribute('href');
+        return href && href.charAt(0) === '#' ? document.querySelector(href) : null;
+      })
+      .filter(Boolean);
+
+    function onScroll() {
+      var st = window.pageYOffset || docEl.scrollTop;
+      var h = docEl.scrollHeight - docEl.clientHeight;
+      bar.style.width = (h > 0 ? (st / h) * 100 : 0) + '%';
+      if (nav) nav.classList.toggle('scrolled', st > 8);
+
+      var current = null;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].getBoundingClientRect().top <= 120) current = sections[i];
+      }
+      navLinks.forEach(function (a) {
+        a.classList.toggle('active', !!current && a.getAttribute('href') === '#' + current.id);
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+
+    // Reveal-on-scroll (no-JS and reduced-motion users see everything already)
+    if (!reduceMotion) {
+      var targets = document.querySelectorAll(
+        '.section-head, .info-item, .text-grid > *, .fact, .systems-grid > *, .stage, ' +
+        '.quote, .visual-showcase figure, .story-gallery figure, .character-gallery figure, ' +
+        '.interface-grid > *, .milestone, .release-grid > *'
+      );
+      Array.prototype.forEach.call(targets, function (el) {
+        el.classList.add('reveal');
+        var siblings = el.parentNode ? el.parentNode.children : [];
+        var idx = Array.prototype.indexOf.call(siblings, el);
+        if (idx > 0) el.style.transitionDelay = Math.min(idx * 0.06, 0.3) + 's';
+      });
+
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-visible');
+              io.unobserve(e.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+        Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+      } else {
+        Array.prototype.forEach.call(targets, function (el) { el.classList.add('is-visible'); });
+      }
+    }
+  })();
+  </script>
 </body>
 </html>
